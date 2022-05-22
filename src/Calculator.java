@@ -24,6 +24,8 @@ public class Calculator implements ActionListener {
     JButton reciprocalButton;
     JButton clearButton;
     JButton deleteButton;
+    JRadioButton standardRButton;
+    JRadioButton scientificRButton;
 
     // Variables:
     char var;
@@ -163,6 +165,24 @@ public class Calculator implements ActionListener {
         label.setHorizontalAlignment(SwingConstants.RIGHT);
         label.setBounds(230, 0, 85, 50);
         frame.add(label);
+
+        standardRButton = new JRadioButton("Standard");
+        standardRButton.setBounds(10, 130, 120, 25);
+        standardRButton.setFont(new Font("Arial", Font.BOLD, 15));
+        standardRButton.setBackground(Color.BLACK);
+        standardRButton.setForeground(Color.WHITE);
+        standardRButton.setSelected(true);
+        standardRButton.setEnabled(false);
+        frame.add(standardRButton);
+
+        scientificRButton = new JRadioButton("Scientific");
+        scientificRButton.setBounds(10, 155, 120, 25);
+        scientificRButton.setFont(new Font("Arial", Font.BOLD, 15));
+        scientificRButton.setBackground(Color.BLACK);
+        scientificRButton.setForeground(Color.WHITE);
+        scientificRButton.setSelected(false);
+        scientificRButton.setEnabled(true);
+        frame.add(scientificRButton);
     }
 
     public void addActionListener() {
@@ -183,11 +203,30 @@ public class Calculator implements ActionListener {
         reciprocalButton.addActionListener(this);
         clearButton.addActionListener(this);
         deleteButton.addActionListener(this);
+        standardRButton.addActionListener(this);
+        scientificRButton.addActionListener(this);
+    }
+
+    public void standardMode() {
+        standardRButton.setEnabled(false);
+        scientificRButton.setEnabled(true);
+        scientificRButton.setSelected(false);
+    }
+    public void scientificMode() {
+        scientificRButton.setEnabled(false);
+        standardRButton.setEnabled(true);
+        standardRButton.setSelected(false);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == clearButton) {
+        if (e.getSource() == standardRButton) {
+            standardMode();
+        }
+        else if (e.getSource() == scientificRButton) {
+            scientificMode();
+        }
+        else if (e.getSource() == clearButton) {
             label.setText("");
             textField.setText("");
         }
