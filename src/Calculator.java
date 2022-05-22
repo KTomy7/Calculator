@@ -12,7 +12,7 @@ public class Calculator implements ActionListener {
     // Numbers
     ArrayList<JButton> numberButtons;
 
-    // Operators
+    // Standard Operators:
     JButton dotButton;
     JButton plusButton;
     JButton minusButton;
@@ -27,6 +27,18 @@ public class Calculator implements ActionListener {
     JRadioButton standardRButton;
     JRadioButton scientificRButton;
 
+    // Scientific Operators:
+    JButton sinButton;
+    JButton cosButton;
+    JButton tanButton;
+    JButton cotButton;
+    JButton lnButton;
+    JButton logButton;
+    JButton expButton;
+    JButton xyButton;
+    JButton piButton;
+    JButton eButton;
+
     // Variables:
     char var;
     double number, answer;
@@ -35,7 +47,8 @@ public class Calculator implements ActionListener {
     public Calculator() {
         initGUI();
         addNumbers();
-        addOperators();
+        addStandardOperators();
+        addScientificOperators();
         addActionListener();
     }
 
@@ -74,7 +87,7 @@ public class Calculator implements ActionListener {
         }
     }
 
-    public void addOperators() {
+    public void addStandardOperators() {
         dotButton = new JButton(".");
         dotButton.setFont(new Font("Arial", Font.BOLD, 30));
         dotButton.setBackground(new Color(64,64,64));
@@ -185,11 +198,139 @@ public class Calculator implements ActionListener {
         frame.add(scientificRButton);
     }
 
+    private void addScientificOperators() {
+        sinButton = new JButton("sin");
+        sinButton.setBounds(330, 350, 75, 50);
+        sinButton.setFont(new Font("Arial", Font.BOLD, 25));
+        sinButton.setBackground(new Color(255,165,0));
+        sinButton.setForeground(Color.WHITE);
+        sinButton.setVisible(false);
+        frame.add(sinButton);
+
+        cosButton = new JButton("cos");
+        cosButton.setBounds(330, 295, 75, 50);
+        cosButton.setFont(new Font("Arial", Font.BOLD, 23));
+        cosButton.setBackground(new Color(255,165,0));
+        cosButton.setForeground(Color.WHITE);
+        cosButton.setVisible(false);
+        frame.add(cosButton);
+
+        tanButton = new JButton("tan");
+        tanButton.setBounds(330, 240, 75, 50);
+        tanButton.setFont(new Font("Arial", Font.BOLD, 25));
+        tanButton.setBackground(new Color(255,165,0));
+        tanButton.setForeground(Color.WHITE);
+        tanButton.setVisible(false);
+        frame.add(tanButton);
+
+        cotButton = new JButton("cot");
+        cotButton.setBounds(330, 185, 75, 50);
+        cotButton.setFont(new Font("Arial", Font.BOLD, 25));
+        cotButton.setBackground(new Color(255,165,0));
+        cotButton.setForeground(Color.WHITE);
+        cotButton.setVisible(false);
+        frame.add(cotButton);
+
+        lnButton = new JButton("ln");
+        lnButton.setBounds(410, 350, 75, 50);
+        lnButton.setFont(new Font("Arial", Font.BOLD, 25));
+        lnButton.setBackground(new Color(255,165,0));
+        lnButton.setForeground(Color.WHITE);
+        lnButton.setVisible(false);
+        frame.add(lnButton);
+
+        logButton = new JButton("log");
+        logButton.setBounds(410, 295, 75, 50);
+        logButton.setFont(new Font("Arial", Font.BOLD, 25));
+        logButton.setBackground(new Color(255,165,0));
+        logButton.setForeground(Color.WHITE);
+        logButton.setVisible(false);
+        frame.add(logButton);
+
+        expButton = new JButton("exp");
+        expButton.setBounds(410, 240, 75, 50);
+        expButton.setFont(new Font("Arial", Font.BOLD, 20));
+        expButton.setBackground(new Color(255,165,0));
+        expButton.setForeground(Color.WHITE);
+        expButton.setVisible(false);
+        frame.add(expButton);
+
+        xyButton = new JButton("x^y");
+        xyButton.setBounds(410, 185, 75, 50);
+        xyButton.setFont(new Font("Arial", Font.BOLD, 20));
+        xyButton.setBackground(new Color(255,165,0));
+        xyButton.setForeground(Color.WHITE);
+        xyButton.setVisible(false);
+        frame.add(xyButton);
+
+        piButton = new JButton("\u03C0");
+        piButton.setBounds(330, 130, 75, 50);
+        piButton.setFont(new Font("Arial", Font.BOLD, 30));
+        piButton.setBackground(new Color(255,165,0));
+        piButton.setForeground(Color.WHITE);
+        piButton.setVisible(false);
+        frame.add(piButton);
+
+        eButton = new JButton("e");
+        eButton.setBounds(410, 130, 75, 50);
+        eButton.setFont(new Font("Arial", Font.BOLD, 30));
+        eButton.setBackground(new Color(255,165,0));
+        eButton.setForeground(Color.WHITE);
+        eButton.setVisible(false);
+        frame.add(eButton);
+    }
+
+    public void standardMode() {
+        standardRButton.setEnabled(false);
+        scientificRButton.setEnabled(true);
+        scientificRButton.setSelected(false);
+
+        frame.setSize(350, 505);
+        textField.setSize(315, 50);
+        label.setSize(85, 50);
+        equalButton.setSize(75, 50);
+
+        sinButton.setVisible(false);
+        cosButton.setVisible(false);
+        tanButton.setVisible(false);
+        cotButton.setVisible(false);
+        lnButton.setVisible(false);
+        logButton.setVisible(false);
+        expButton.setVisible(false);
+        xyButton.setVisible(false);
+        piButton.setVisible(false);
+        eButton.setVisible(false);
+    }
+
+    public void scientificMode() {
+        scientificRButton.setEnabled(false);
+        standardRButton.setEnabled(true);
+        standardRButton.setSelected(false);
+
+        frame.setSize(510, 505);
+        textField.setSize(475, 50);
+        label.setSize(245, 50);
+        equalButton.setSize(235, 50);
+
+        sinButton.setVisible(true);
+        cosButton.setVisible(true);
+        tanButton.setVisible(true);
+        cotButton.setVisible(true);
+        lnButton.setVisible(true);
+        logButton.setVisible(true);
+        expButton.setVisible(true);
+        xyButton.setVisible(true);
+        piButton.setVisible(true);
+        eButton.setVisible(true);
+    }
+
     public void addActionListener() {
         // Add ActionListener to number buttons:
         for (JButton button : numberButtons) {
             button.addActionListener(this);
         }
+        piButton.addActionListener(this);
+        eButton.addActionListener(this);
 
         // Add ActionListener to operator buttons:
         dotButton.addActionListener(this);
@@ -205,17 +346,15 @@ public class Calculator implements ActionListener {
         deleteButton.addActionListener(this);
         standardRButton.addActionListener(this);
         scientificRButton.addActionListener(this);
-    }
+        sinButton.addActionListener(this);
+        cosButton.addActionListener(this);
+        tanButton.addActionListener(this);
+        cotButton.addActionListener(this);
+        lnButton.addActionListener(this);
+        logButton.addActionListener(this);
+        expButton.addActionListener(this);
+        xyButton.addActionListener(this);
 
-    public void standardMode() {
-        standardRButton.setEnabled(false);
-        scientificRButton.setEnabled(true);
-        scientificRButton.setSelected(false);
-    }
-    public void scientificMode() {
-        scientificRButton.setEnabled(false);
-        standardRButton.setEnabled(true);
-        standardRButton.setSelected(false);
     }
 
     @Override
@@ -276,6 +415,12 @@ public class Calculator implements ActionListener {
         else if (e.getSource() == numberButtons.get(9)) {
             textField.setText(textField.getText() + "9");
         }
+        else if (e.getSource() == piButton) {
+            textField.setText(textField.getText() + Math.PI);
+        }
+        else if (e.getSource() == eButton) {
+            textField.setText(textField.getText() + Math.E);
+        }
         else if (e.getSource() == dotButton) {
             if (textField.getText().contains(".")) {
                 return;
@@ -311,6 +456,13 @@ public class Calculator implements ActionListener {
             label.setText(str + "/");
             var = '/';
         }
+        else if (e.getSource() == xyButton) {
+            String str = textField.getText();
+            number = Double.parseDouble(str);
+            textField.setText("");
+            label.setText(str + "^");
+            var = '^';
+        }
         else if (e.getSource() == equalButton) {
             switch (var) {
                 case '+' -> {
@@ -333,9 +485,13 @@ public class Calculator implements ActionListener {
                     checkResult(answer);
                     label.setText("");
                 }
+                case '^' -> {
+                    answer = Math.pow(number, Double.parseDouble(textField.getText()));
+                    checkResult(answer);
+                    label.setText("");
+                }
             }
         }
-
         else if (e.getSource() == sqrtButton) {
             number = Double.parseDouble(textField.getText());
             answer = Math.sqrt(number);
@@ -349,6 +505,41 @@ public class Calculator implements ActionListener {
         else if (e.getSource() == reciprocalButton) {
             number = Double.parseDouble(textField.getText());
             answer = 1/ number;
+            checkResult(answer);
+        }
+        else if (e.getSource() == sinButton) {
+            number = Double.parseDouble(textField.getText());
+            answer = Math.sin(number);
+            checkResult(answer);
+        }
+        else if (e.getSource() == cosButton) {
+            number = Double.parseDouble(textField.getText());
+            answer = Math.cos(number);
+            checkResult(answer);
+        }
+        else if (e.getSource() == tanButton) {
+            number = Double.parseDouble(textField.getText());
+            answer = Math.tan(number);
+            checkResult(answer);
+        }
+        else if (e.getSource() == cotButton) {
+            number = Double.parseDouble(textField.getText());
+            answer = 1/Math.tan(number);
+            checkResult(answer);
+        }
+        else if (e.getSource() == lnButton) {
+            number = Double.parseDouble(textField.getText());
+            answer = Math.log(number);
+            checkResult(answer);
+        }
+        else if (e.getSource() == logButton) {
+            number = Double.parseDouble(textField.getText());
+            answer = Math.log10(number);
+            checkResult(answer);
+        }
+        else if (e.getSource() == expButton) {
+            number = Double.parseDouble(textField.getText());
+            answer = Math.exp(number);
             checkResult(answer);
         }
     }
