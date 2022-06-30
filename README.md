@@ -2,7 +2,7 @@
 
 Discipline: Object-Oriented Programming (Java)
 
-1st Year, Second Semester
+1st Year, 2nd Semester
 
 Laboratory project
 
